@@ -1,5 +1,6 @@
 package com.example.calculator2;
 
+import java.util.LinkedList;
 import java.util.Scanner;
 
 public class App {
@@ -8,9 +9,9 @@ public class App {
 
 
         Scanner scan = new Scanner(System.in);
-
-        int result = 0;
+        Calculator cal = new Calculator();
         boolean reVal = true;
+        int result = 0;
 
         while(reVal) {
             System.out.print("계산할 첫번째 숫자를 입력하세요! : ");
@@ -23,11 +24,17 @@ public class App {
             String c = scan.next();
             char allSym = c.charAt(0);
 
-            Calculator cal = new Calculator();
-            result = cal.Calculator(a, b, allSym);
+            cal.Calculate(a, b, allSym);
+            LinkedList<Integer> results = cal.getResultData();
 
-            System.out.println("결과 : " + result);
+            if(results.size() > 6)
+                cal.setRemoveFirstResult();
+
+            System.out.println("결과 : " + results.getLast());
+            System.out.println("========================");
+            System.out.println("전체 계산 기록: " + results);
             System.out.println();
+
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String rework = scan.next();
 
