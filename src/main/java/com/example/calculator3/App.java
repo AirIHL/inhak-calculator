@@ -7,13 +7,12 @@ public class App {
     public static void main(String[] args) {
 
 
-
         Scanner scan = new Scanner(System.in);
         ArithmeticCalculator cal = new ArithmeticCalculator();
         boolean reVal = true;
         double result = 0;
 
-        while(reVal) {
+        while (reVal) {
             System.out.print("계산할 첫번째 숫자를 입력하세요! : ");
             double a = scan.nextDouble();
 
@@ -27,7 +26,7 @@ public class App {
             cal.calculate(a, b, allSym);
             LinkedList<Double> results = cal.getResultData();
 
-            if(results.size() > 6)
+            if (results.size() > 6)
                 cal.setRemoveFirstResult();
 
             System.out.printf("결과 : %.2f\n", results.getLast());
@@ -38,7 +37,7 @@ public class App {
             System.out.println("더 계산하시겠습니까? (exit 입력 시 종료) : ");
             String rework = scan.next();
 
-            if(rework.equals("exit")) {
+            if (rework.equals("exit")) {
                 reVal = false;
             }
         }
