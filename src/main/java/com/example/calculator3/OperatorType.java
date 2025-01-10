@@ -1,7 +1,8 @@
 package com.example.calculator3;
 
+// 계산하는 메서드, Enum 타입을 활용하여 연산자 타입에 대한 정보를 관리
+// 제너릭 구현
 public enum OperatorType {
-
     PLUS('+') {
         @Override
         public <T extends Number> double calculate(T a, T b) {
@@ -36,12 +37,14 @@ public enum OperatorType {
         this.symbol = symbol;
     }
 
+    //Getter로 symbol 반환
     public char getSymbol() {
         return symbol;
     }
 
     public abstract <T extends Number> double calculate(T a, T b);
 
+    // 어떤 symbol인지 판별, 해당하지 않는다면 예외 처리
     public static OperatorType fromSymbol(char symbol) {
         for (OperatorType type : values()) {
             if (type.symbol == symbol) return type;
